@@ -8,7 +8,7 @@ Student::Student()
 	
 }
 
-Student::Student(char a, char b, int x)
+void Student::inputData()
 {
     cout << "First name: ";
     cin >> firstName;

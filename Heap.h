@@ -6,7 +6,6 @@ class Heap
 {
 private:
 	T* data;
-	int numNodes = 0;
 	int size;
 	
 	int leftChild(int);
@@ -16,15 +15,16 @@ private:
 	
 
 public:
-	Heap(int = 15);
+	Heap(int = 100);
 	
-	void buildHeap(T*);
+	void buildHeap(T*, int);
 	void heapify(int);
-	void heapSort();
+	void max();
 	T extractMax();
 	void insert(T);
 	void insert();
 	void printHeap();
+	void heapSort();
 
 };
 
