@@ -9,7 +9,6 @@ Heap<T>::Heap(int s)
 template <class T>
 void Heap<T>::insert()
 {
-	//cout <<"inserting" << endl;
 	T x = T();
 	insert(x);
 }
@@ -24,7 +23,6 @@ void Heap<int>::insert()
 template <>
 void Heap<Student>::insert()
 {
-	//cout <<"inserting" << endl;
 	Student x = Student();
 	x.inputData();
 	insert(x);
@@ -40,7 +38,6 @@ void Heap<T>::insert(T newData)
 	}
 	data[i] = newData;
 	size++;
-	//printHeap();
 }
 template <class T>
 void Heap<T>::max()
@@ -67,26 +64,17 @@ T Heap<T>::extractMax()
 template <class T>
 void Heap<T>::buildHeap(T* A, int s)
 {
-	//cout << "size: " << size << endl;
-	for(int i = 0; i < s; i++)
-	{
-		//cout << "A[" << i << "] = " << A[i] << ", ";
+	for(int i = 0; i < 100; i++)
 		data[i] = i<s? A[i] : 0;
-	}
 	size = s;
-	cout << "size: " << size << endl;
-	//start at the last internal node and heapify - basically just heapsort the new array
-	for(int i = (size/2)-1; i >= 0; i--)
-	{
-		cout << "heapifying: " << i << 	", ";
+	
+	for(int i = (size/2)-1; i >= 0; i--)  //start at the last internal node and heapify - basically just heapsort the new array
 		heapify(i);
-	}
 	cout << endl;
 }
 template <class T>
 void Heap<T>::heapify(int i)
 {
-	cout << "heapify " << data[i];
 	int L = leftChild(i);
 	int R = rightChild(i);
 	int largest;
@@ -100,7 +88,6 @@ void Heap<T>::heapify(int i)
 
 	if(largest != i)
 	{
-		cout << "swap " << data[i] << " and " << data[largest] << endl;
 		swap(i, largest);
 		heapify(largest);
 	} 

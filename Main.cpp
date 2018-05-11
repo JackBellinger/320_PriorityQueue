@@ -74,7 +74,7 @@ void testData(Heap<int>* h)
 		
 	int testData[100] = {4, 12, 3, 19, 23, 5, 32, 11, 2, 24};
 	h->buildHeap(testData, 10);
-	h->printHeap();
+	//h->printHeap();
 }
 int main()
 {
@@ -85,7 +85,7 @@ int main()
 	cout << "Choose a Heap type" << endl << "0. Student" << endl << "1. Integer" << endl;
 	bool isIHeap = 0;
 	cin >> isIHeap;
-	
+	cout << "clear screen?";
 	bool clear = true;
 	cin >> clear;
 	cout << (clear?string(100, '\n'):"");
