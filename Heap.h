@@ -4,7 +4,7 @@
 template <class T>
 class Heap
 {
-private:
+public:
 	T* data;
 	int size;
 	
@@ -14,7 +14,6 @@ private:
 	void swap(int, int);
 	
 
-public:
 	Heap(int = 100);
 	
 	void buildHeap(T*, int);
@@ -24,7 +23,8 @@ public:
 	void insert(T);
 	void insert();
 	void printHeap();
-	void heapSort();
+	void heapSort(T*, int);
+	T operator [](int);
 
 };
 

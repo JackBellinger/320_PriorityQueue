@@ -1,32 +1,14 @@
 #include "Heap.h"
 #include "Student.h"
+#include <cmath>
 
 template <class T>
 Heap<T>::Heap(int s)
 {
-	data = new T[s];
+	size = s;
+	data = new T[size];
 }
-template <class T>
-void Heap<T>::insert()
-{
-	T x = T();
-	insert(x);
-}
-template <>
-void Heap<int>::insert()
-{
-	cout <<"what would you lke to add," << endl;
-	int x = int();
-	cin >> x;
-	insert(x);
-}
-template <>
-void Heap<Student>::insert()
-{
-	Student x = Student();
-	x.inputData();
-	insert(x);
-}
+
 template <class T>
 void Heap<T>::insert(T newData)
 {
@@ -64,10 +46,7 @@ T Heap<T>::extractMax()
 template <class T>
 void Heap<T>::buildHeap(T* A, int s)
 {
-	for(int i = 0; i < 100; i++)
-		data[i] = i<s? A[i] : 0;
 	size = s;
-	
 	for(int i = (size/2)-1; i >= 0; i--)  //start at the last internal node and heapify - basically just heapsort the new array
 		heapify(i);
 	cout << endl;
@@ -77,13 +56,16 @@ void Heap<T>::heapify(int i)
 {
 	int L = leftChild(i);
 	int R = rightChild(i);
-	int largest;
-
-	if( L <= size && data[i] < data[L])
+	int largest = i;
+	if(i >= size)
+		return;
+	//cout << data[i];
+	//cout << data[L];
+	if( L < size && data[i] < data[L])
 		largest = L;
 	else
 		largest = i;
-	if( R <= size && data[largest] < data[R])
+	if( R < size && data[largest] < data[R])
 		largest = R;
 
 	if(largest != i)
@@ -117,18 +99,43 @@ void Heap<T>::swap(int x, int y)
 	data[x] = data[y];
 	data[y] = temp;
 }
-
+bool isPow2(int x)
+{
+	return x > 0 && !(x & (x-1));
+}
 template <class T>
 void Heap<T>::printHeap()
 {
+	//int height = log2(size);
+	int nextEndl = 1;
+	int offset = 2;
 	for(int i = 0; i < size; i++)
-		cout << data[i] << ", ";
-	cout << endl << endl;
+	{
+		if(i == nextEndl)
+		{//if the main loop gets to an element that should be on a new line, cout endl
+			cout << endl;
+			nextEndl *= 2;
+		}
+
+		cout << data[i];
+		
+		//used to dynamically set the space between the elements
+		for(int o = 0; o < offset; o++)
+			cout << " ";
+	}
+		cout << endl << endl;
 }
 
 template <class T>
-void Heap<T>::heapSort()
+void Heap<T>::heapSort(T* array, int size)
 {
+	buildHeap(array, size);
 	for(int i = 0; i < size; i++)
-		cout << extractMax() << ", ";
+		array[i] = extractMax();
+}
+
+template <class T>
+T Heap<T>::operator [](int i)
+{
+	return data[i];
 }
