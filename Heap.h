@@ -1,5 +1,12 @@
 #ifndef HEAP_H
 #define HEAP_H
+template<class T>
+class pQNode
+{
+	int key;
+	T data;
+};
+
 
 template <class T>
 class Heap
@@ -7,6 +14,7 @@ class Heap
 public:
 	T* data;
 	int size;
+	int arraySize;
 	
 	int leftChild(int);
 	int rightChild(int);
@@ -18,14 +26,22 @@ public:
 	
 	void buildHeap(T*, int);
 	void heapify(int);
+	void increaseSize();
+	
 	void max();
+	void peek();
 	T extractMax();
+	
 	void insert(T);
 	void insert();
-	void printHeap();
-	void heapSort(T*, int);
-	T operator [](int);
 
+	void printHeap();
+	
+	void heapSort(T*, int);
+	
+	T operator [](int);
+private:
+	void increaseKey();
 };
 
 

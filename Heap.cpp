@@ -8,7 +8,11 @@ Heap<T>::Heap(int s)
 	size = s;
 	data = new T[size];
 }
-
+template <class T>
+void Heap<T>::insert()
+{
+	
+}
 template <class T>
 void Heap<T>::insert(T newData)
 {
@@ -25,6 +29,11 @@ template <class T>
 void Heap<T>::max()
 {
 	cout << " Max: " << data[0];
+}
+template <class T>
+void Heap<T>::peek()
+{
+	cout << data[0];
 }
 template <class T>
 T Heap<T>::extractMax()

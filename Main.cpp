@@ -98,7 +98,7 @@ bool doMenu(int response, Heap<T>* heap, bool clearScreen)
 		{
 			case 1:
 			{
-				//heap->insert();
+				heap->insert();
 				cout << (clearScreen?string(100, '\n'):"");
 				break;
 			}
