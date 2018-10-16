@@ -51,8 +51,7 @@ void timeHeapSort(Heap<int>* h, int* array, int length)
 {
     // The "auto" type determines the correct type at compile-time
     auto start = std::chrono::system_clock::now();
-    
-   h->heapSort(array, length); 
+    h->heapSortRandomizer(array, length); 
     auto end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
@@ -74,7 +73,7 @@ int menu()
 
 	cout << "Menu:" << endl;
 	cout << "1. insert" << endl;
-	cout << "2. extract max " << endl;
+	cout << "2. extract max / dequeue " << endl;
 	cout << "3. print max" << endl;
 	cout << "4. print heap" << endl;
 	cout << "5. test + time heap" << endl;
@@ -110,7 +109,7 @@ bool doMenu(int response, Heap<T>* heap, bool clearScreen)
 			}
 			case 3:
 			{
-				heap->max();
+				heap->peek();
 				break;
 			}
 			case 4:
@@ -174,23 +173,23 @@ void testHeap()
 }
 int main()
 {
-	Heap<int>* iHeap = new Heap<int>();
+//	Heap<int>* iHeap = new Heap<int>();
 	//testData(iHeap);
 	Heap<Student>* sHeap = new Heap<Student>(10);
 	
-	cout << "Choose a Heap type" << endl << "0. Student" << endl << "1. Integer" << endl;
-	bool isIHeap = 0;
-	cin >> isIHeap;
-	cout << "clear screen?";
+	//cout << "Choose a Heap type" << endl << "0. Student" << endl << "1. Integer" << endl;
+	//bool isIHeap = 0;
+	//cin >> isIHeap;
+	cout << "0: leave old messages\n1:clear after each action\nClear Screen? : ";
 	bool clear = true;
 	cin >> clear;
 	cout << (clear?string(100, '\n'):"");
 	bool quit = false;
 	while(!quit)//menu asks for which option, which returns the choice into doMenu, which returns if the program should quit
 	{
-		if(isIHeap)
-			quit = doMenu(menu(), iHeap, clear);
-		else
+//		if(isIHeap)
+//			quit = doMenu(menu(), iHeap, clear);
+//		else
 			quit = doMenu(menu(), sHeap, clear);
 	}
 	return 0;

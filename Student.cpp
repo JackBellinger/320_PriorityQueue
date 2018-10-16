@@ -5,7 +5,7 @@ using namespace std;
 
 Student::Student()
 {
-	inputData();	
+	//inputData();	
 }
 
 void Student::inputData()

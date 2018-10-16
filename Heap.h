@@ -3,8 +3,12 @@
 template<class T>
 class pQNode
 {
-	int key;
+public:
+	int key = -1;
 	T data;
+	pQNode();
+	pQNode(int);
+	pQNode(T, int);
 };
 
 
@@ -12,7 +16,7 @@ template <class T>
 class Heap
 {
 public:
-	T* data;
+	pQNode<T>* data;
 	int size;
 	int arraySize;
 	
@@ -24,22 +28,21 @@ public:
 
 	Heap(int = 100);
 	
-	void buildHeap(T*, int);
+	void buildHeapRandomizer(T*, int);
 	void heapify(int);
-	void increaseSize();
+	void increaseSize(int);
 	
-	void max();
 	void peek();
 	T extractMax();
 	
-	void insert(T);
+	void insert(pQNode<T>);
 	void insert();
 
 	void printHeap();
 	
-	void heapSort(T*, int);
+	void heapSortRandomizer(T*, int);
 	
-	T operator [](int);
+	pQNode<T> operator [](int);
 private:
 	void increaseKey();
 };
